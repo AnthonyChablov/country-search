@@ -13,7 +13,7 @@ const Nav = () => {
   }
 
   return (
-    <div className="bg-white shadow-md dark:bg-gray-800 dark:text-white"> 
+    <div className="bg-white shadow-md dark:bg-gray-700 dark:text-white"> 
         <Container>
             <div className="flex justify-between items-center ">
                 <p className="font-semibold">Where in the world?</p>
@@ -25,7 +25,7 @@ const Nav = () => {
                     size={18}
                     color={theme==='light' ? 'black' : 'white'}
                   />
-                  <p className="ml-2">Dark Mode</p>
+                  <p className="ml-3">Dark Mode</p>
                 </div>
             </div>
         </Container>

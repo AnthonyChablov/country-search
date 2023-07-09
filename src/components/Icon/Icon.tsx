@@ -1,5 +1,6 @@
 import {BsSunFill, BsMoonFill, BsMoon} from 'react-icons/bs';
 import {AiOutlineSearch} from 'react-icons/ai';
+import { BiChevronDown} from 'react-icons/bi';
 
 interface IIcons {
     type : string,
@@ -16,7 +17,8 @@ const Icon = ({ type, size, color }:IIcons) => {
                     moonFill : <BsMoonFill size={size} color={color} /> , 
                     moon : <BsMoon size={size} color={color} /> , 
                     sun : <BsSunFill size={size} color={color}/> ,
-                    search: <AiOutlineSearch size={size} color={color}/> 
+                    search: <AiOutlineSearch size={size} color={color}/> ,
+                    down : <BiChevronDown size={size} color={color}/>
                 }[type]
             }
         </div>
