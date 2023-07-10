@@ -9,7 +9,6 @@ function App() {
   const theme = useAppStore(state => state.theme);
   const setTheme = useAppStore(state => state.setTheme);
 
-
   /* Darkmode */
   useEffect(() => {
     const themeMode = localStorage.getItem("theme-mode-ac");
