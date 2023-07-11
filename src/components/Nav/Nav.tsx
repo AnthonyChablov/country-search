@@ -13,7 +13,7 @@ const Nav = () => {
   }
 
   return (
-    <div className="bg-white shadow-md dark:bg-gray-700 dark:text-white"> 
+    <div className="bg-white shadow-lg dark:bg-gray-700 dark:text-white"> 
         <Container>
             <div className="flex justify-between items-center ">
                 <p className="font-semibold">Where in the world?</p>

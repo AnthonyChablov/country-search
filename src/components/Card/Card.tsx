@@ -1,3 +1,4 @@
+import Text from "./Text"
 
 interface ICard{
     flag:string,
@@ -12,24 +13,53 @@ const Card = ({
     country,
     population,
     region,
-    capital
+    capital,
 }:ICard ) => {
+
+    const data = [
+        {
+            category :'Population: ',
+            value : population
+        },
+        {
+            category :'Region: ',
+            value : region
+        },
+        {
+            category :'Capital: ',
+            value : capital
+        },
+    ];
 
     return (
         <div className="w-full bg-white shadow-md dark:bg-gray-700 rounded-md overflow-hidden">
             {/* flag */}
             <div className="">
-                <div className="h-44 bg-slate-500">
-
+                <div className="h-32 overflow-hidden bg-slate-500">
+                    <div className="aspect-w-16 aspect-h-9 max-h-5">
+                        <img
+                            className="object-contain w-full h-full"
+                            src={flag}
+                            alt="country flag"
+                        />
+                    </div>
                 </div>
             </div>
             {/* description */}
-            <div className="px-8 py-8">
+            <div className="px-8 pt-4 pb-10">
                 <h1 className="text-lg font-semibold mb-3">{country}</h1>
                 <div className="">
-                    <span className=" flex"><p>Population: </p> <p className="text-slate-400">{population}</p></span>
-                    <span className=" flex"><p>Region: </p> <p className="text-slate-400">{region}</p></span>
-                    <span className=" flex"><p>Capital: </p> <p className="text-slate-400">{capital}</p></span>
+                    {
+                        data.map( (elem, i:number) => {
+                            return (
+                                <Text 
+                                    key={i} 
+                                    category={elem.category} 
+                                    value={elem.value} 
+                                />
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>
