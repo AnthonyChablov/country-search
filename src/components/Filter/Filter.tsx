@@ -18,8 +18,7 @@ const Filter = () => {
 
   useEffect(()=>{
     console.log(filter)
-  },[filter])
-  
+  },[filter]);
 
   return (
     <div>

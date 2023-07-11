@@ -15,8 +15,8 @@ const Nav = () => {
   return (
     <div className="bg-white shadow-lg dark:bg-gray-700 dark:text-white"> 
         <Container>
-            <div className="flex justify-between items-center ">
-                <p className="font-semibold">Where in the world?</p>
+            <div className="flex flex-col sm:flex-row justify-between items-center ">
+                <p className="font-semibold text-sm sm:text-lg">Where in the world?</p>
                 <div className=" flex justify-center items-center cursor-pointer"
                   onClick={()=>onClickDarkModeToggle()}
                 >
@@ -25,7 +25,7 @@ const Nav = () => {
                     size={18}
                     color={theme==='light' ? 'black' : 'white'}
                   />
-                  <p className="ml-3">Dark Mode</p>
+                  <p className="ml-3 text-sm sm:text-lg">Dark Mode</p>
                 </div>
             </div>
         </Container>

@@ -28,7 +28,7 @@ const AppLayout = () => {
               <div className="md:w-5/12">
                 <SearchBar />
               </div>
-              <div className="mt-10 md:col-span-1">
+              <div className="mt-10 md:mt-0 md:col-span-1">
                 <div className="mt-5 md:mt-0 w-10/12">
                   <Filter />
                 </div>
@@ -44,6 +44,7 @@ const AppLayout = () => {
                 data?.slice(0, 8)?.map((country, i: number) => (
                     <Card
                       key={i}
+                      link=' '
                       flag={country.flags.png}
                       country={country.name.common}
                       population={country.population.toString()}
