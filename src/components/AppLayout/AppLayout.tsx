@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
-import Container from "../Container/Container";
-import SearchBar from "../SearchBar/SearchBar";
-import Filter from "../Filter/Filter";
+import Container from '../Container/Container';
+import SearchBar from '../SearchBar/SearchBar';
+import Filter from '../Filter/Filter';
 import { getAll } from '../../api/restCountries';
 import Card from '../Card/Card';
 import { useDataStore } from '../../store/app/data/dataStore';
 import { CountryInfo } from '../../models/country';
-import PageButton from '../Buttons/PageButton';
 import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
+import Pagination from './Pagination';
 
 const AppLayout: React.FC = () => {
-
   // State
   const data = useDataStore((state) => state.data);
   const setData = useDataStore((state) => state.setData);
@@ -48,22 +48,19 @@ const AppLayout: React.FC = () => {
       <Container>
         <div className="md:flex md:justify-between md:gap-8 mb-12">
           <div className="md:w-5/12">
-            {/* Search bar component */}
             <SearchBar />
           </div>
           <div className="mt-10 md:mt-0 md:col-span-1">
             <div className="mt-5 md:mt-0 w-10/12">
-              {/* Filter component */}
               <Filter />
             </div>
           </div>
         </div>
-        {/* Display country data */}
         <motion.div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          {!isLoading ? (
-            <Loading/> // Render a loading indicator while fetching data
+          {isLoading ? (
+            <Loading />
           ) : error ? (
-            <div>Error occurred while fetching data.</div> // Render an error message
+            <Error />
           ) : (
             currentCountries?.map((country, i: number) => (
               <motion.div
@@ -84,19 +81,12 @@ const AppLayout: React.FC = () => {
             ))
           )}
         </motion.div>
-
-        {/* Pagination */}
-        {filteredData && (
-          <div className="flex justify-center mt-10">
-            {Array.from(Array(Math.ceil(filteredData.length / countriesPerPage)).keys()).map((pageNumber) => (
-              <PageButton 
-                currentPage={currentPage} 
-                pageNumber={pageNumber}
-                paginate={paginate}
-              />
-            ))}
-          </div>
-        )}
+        <Pagination
+          filteredData={filteredData}
+          currentPage={currentPage}
+          countriesPerPage={countriesPerPage}
+          paginate={paginate}
+        />
       </Container>
     </div>
   );
