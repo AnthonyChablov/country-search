@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import useSWR from 'swr';
+import { motion } from 'framer-motion';
 import Container from "../Container/Container";
 import SearchBar from "../SearchBar/SearchBar";
 import Filter from "../Filter/Filter";
@@ -15,7 +16,7 @@ const AppLayout: React.FC = () => {
   const search = useDataStore((state) => state.search);
 
   // Fetch Data
-  const { data: apiData, isError, isLoading } = useSWR<CountryInfo[]>('/api/data', getAll);
+  const { data: apiData, error, isLoading } = useSWR<CountryInfo[], Error>('/api/data', getAll);
 
   useEffect(() => {
     // Update data state when apiData changes
@@ -42,34 +43,41 @@ const AppLayout: React.FC = () => {
           </div>
         </div>
         {/* Display country data */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10 ">
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
           {isLoading ? (
             <div>Loading...</div> // Render a loading indicator while fetching data
-          ) : isError ? (
+          ) : error ? (
             <div>Error occurred while fetching data.</div> // Render an error message
           ) : (
             filteredData?.map((country, i: number) => (
-              <Card
+              <motion.div
                 key={i}
-                link="123"
-                flag={country.flags.png}
-                country={country.name.common}
-                population={country.population.toString()}
-                region={country.region}
-                capital={country.capital}
-              />
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card
+                  link="123"
+                  flag={country.flags.png}
+                  country={country.name.common}
+                  population={country.population.toString()}
+                  region={country.region}
+                  capital={country.capital}
+                />
+              </motion.div>
             ))
           )}
-        </div>
+        </motion.div>
       </Container>
     </div>
   );
 };
 
 const filterData = (data: CountryInfo[], search: string, filter: string): CountryInfo[] => {
-  return data?.filter((country) =>
-    country.name.common.toLowerCase().includes(search.toLowerCase()) &&
-    (filter === '' || country.region === filter)
+  return data?.filter(
+    (country) =>
+      country.name.common.toLowerCase().includes(search.toLowerCase()) &&
+      (filter === '' || country.region === filter)
   );
 };
 

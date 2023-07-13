@@ -17,7 +17,7 @@ type Action = {
 export const useDataStore = create<State & Action>((set)=>({
     display: false,
     filter: '',
-    data : '',
+    data : null,
     search: '',
     setSearch:(newSearch : string) => set({ search : newSearch }),
     setDisplay: (newDisplay : boolean) => set({ display : newDisplay }),
