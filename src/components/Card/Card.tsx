@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import Text from './Text';
 
@@ -8,7 +7,7 @@ interface ICard {
   country: string;
   population: string;
   region: string;
-  capital: string;
+  capital: string[];
 }
 
 const Card = ({ flag, link, country, population, region, capital }: ICard) => {

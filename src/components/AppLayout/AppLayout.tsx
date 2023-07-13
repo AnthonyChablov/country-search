@@ -8,6 +8,8 @@ import { getAll } from '../../api/restCountries';
 import Card from '../Card/Card';
 import { useDataStore } from '../../store/app/data/dataStore';
 import { CountryInfo } from '../../models/country';
+import PageButton from '../Buttons/PageButton';
+import Loading from '../Loading/Loading';
 
 const AppLayout: React.FC = () => {
 
@@ -29,6 +31,7 @@ const AppLayout: React.FC = () => {
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
   const currentCountries = filteredData?.slice(indexOfFirstCountry, indexOfLastCountry);
+
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -57,8 +60,8 @@ const AppLayout: React.FC = () => {
         </div>
         {/* Display country data */}
         <motion.div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-          {isLoading ? (
-            <div>Loading...</div> // Render a loading indicator while fetching data
+          {!isLoading ? (
+            <Loading/> // Render a loading indicator while fetching data
           ) : error ? (
             <div>Error occurred while fetching data.</div> // Render an error message
           ) : (
@@ -84,17 +87,13 @@ const AppLayout: React.FC = () => {
 
         {/* Pagination */}
         {filteredData && (
-          <div className="flex justify-center mt-6">
+          <div className="flex justify-center mt-10">
             {Array.from(Array(Math.ceil(filteredData.length / countriesPerPage)).keys()).map((pageNumber) => (
-              <button
-                key={pageNumber}
-                className={`mx-1 px-3 py-2 rounded-md ${
-                  currentPage === pageNumber + 1 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'
-                }`}
-                onClick={() => paginate(pageNumber + 1)}
-              >
-                {pageNumber + 1}
-              </button>
+              <PageButton 
+                currentPage={currentPage} 
+                pageNumber={pageNumber}
+                paginate={paginate}
+              />
             ))}
           </div>
         )}
