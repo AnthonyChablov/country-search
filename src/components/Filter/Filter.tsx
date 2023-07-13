@@ -7,12 +7,12 @@ const continents = [
   {continent :'Africa'},
   {continent :'Europe'},
   {continent :'Asia'},
-  {continent :'Europe'},
+  {continent :'Americas'},
   {continent :'Oceania'},
 ]
 
 const Filter = () => {
-
+  const data = useDataStore(state => state.data);
   const filter = useDataStore(state => state.filter);
   const setFilter = useDataStore(state => state.setFilter);
 

@@ -6,19 +6,22 @@ import Filter from "../Filter/Filter";
 import { getAll } from '../../api/restCountries';
 import Card from '../Card/Card';
 import { CountryInfo } from '../../models/country';
+import { useDataStore } from '../../store/app/data/dataStore';
 
 const AppLayout = () => {
 
-  /* const data = useDataStore(state => state.data);
+  const data = useDataStore(state => state.data);
   const setData = useDataStore(state => state.setData);
-   */
+  const filter = useDataStore(state => state.filter);
+  const search = useDataStore(state => state.search);
 
   /* Fetch Data */
-  const { data, isError, isLoading } = useSWR('/api/data', getAll)
+  const { data:apiData, isError, isLoading } = useSWR('/api/data', getAll)
 
   useEffect(()=>{
-    console.log(data);
-  },[data]); 
+    console.log(search);
+    setData(apiData);
+  },[apiData, data, search]); 
 
   
   return (
@@ -41,10 +44,10 @@ const AppLayout = () => {
               ) : isError ? (
                 <div>Error occurred while fetching data.</div> // Render an error message
               ) : (
-                data?.slice(0, 8)?.map((country, i: number) => (
+                data?.filter(country => country.region === filter)?.map((country, i: number) => (
                     <Card
                       key={i}
-                      link=' '
+                      link='123'
                       flag={country.flags.png}
                       country={country.name.common}
                       population={country.population.toString()}
@@ -53,7 +56,8 @@ const AppLayout = () => {
                     />
                   )
                 )
-              )}
+              )
+              }
             </div>
         </Container>
     </div>
