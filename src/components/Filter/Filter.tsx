@@ -23,7 +23,7 @@ const Filter = () => {
   return (
     <div>
       <select
-        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit shadow-sm rounded-md bg-white dark:bg-gray-700"
+        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit shadow-sm rounded-md bg-white dark:bg-gray-700 cursor-pointer"
         name="continents"
         placeholder="Select"
         value={filter}

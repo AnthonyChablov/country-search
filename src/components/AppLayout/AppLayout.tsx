@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
 import Container from "../Container/Container";
@@ -10,13 +10,28 @@ import { useDataStore } from '../../store/app/data/dataStore';
 import { CountryInfo } from '../../models/country';
 
 const AppLayout: React.FC = () => {
+
+  // State
   const data = useDataStore((state) => state.data);
   const setData = useDataStore((state) => state.setData);
   const filter = useDataStore((state) => state.filter);
   const search = useDataStore((state) => state.search);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Fetch Data
   const { data: apiData, error, isLoading } = useSWR<CountryInfo[], Error>('/api/data', getAll);
+
+  // Filter Data
+  const filteredData = Array.isArray(data) ? filterData(data, search, filter) : [];
+
+  // Pagination
+  const countriesPerPage = 10;
+  const indexOfLastCountry = currentPage * countriesPerPage;
+  const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+  const currentCountries = filteredData?.slice(indexOfFirstCountry, indexOfLastCountry);
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     // Update data state when apiData changes
@@ -24,8 +39,6 @@ const AppLayout: React.FC = () => {
       setData(apiData);
     }
   }, [apiData, setData]);
-
-  const filteredData = Array.isArray(data) ? filterData(data, search, filter) : [];
 
   return (
     <div className="h-fit dark:bg-slate-800 bg-gray-100 dark:text-white">
@@ -49,7 +62,7 @@ const AppLayout: React.FC = () => {
           ) : error ? (
             <div>Error occurred while fetching data.</div> // Render an error message
           ) : (
-            filteredData?.map((country, i: number) => (
+            currentCountries?.map((country, i: number) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -68,6 +81,23 @@ const AppLayout: React.FC = () => {
             ))
           )}
         </motion.div>
+
+        {/* Pagination */}
+        {filteredData && (
+          <div className="flex justify-center mt-6">
+            {Array.from(Array(Math.ceil(filteredData.length / countriesPerPage)).keys()).map((pageNumber) => (
+              <button
+                key={pageNumber}
+                className={`mx-1 px-3 py-2 rounded-md ${
+                  currentPage === pageNumber + 1 ? 'bg-blue-500 text-white' : 'bg-white text-blue-500'
+                }`}
+                onClick={() => paginate(pageNumber + 1)}
+              >
+                {pageNumber + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </Container>
     </div>
   );
