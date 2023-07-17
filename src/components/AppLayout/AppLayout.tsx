@@ -20,11 +20,14 @@ const AppLayout: React.FC = () => {
   const filter = useDataStore((state) => state.filter);
   const search = useDataStore((state) => state.search);
   const [currentPage, setCurrentPage] = useState(1);
-  
   const setSelected = useDataStore((state)=>state.setSelected);
   
   // Fetch Data
-  const { data: apiData, error, isLoading } = useSWR<CountryInfo[], Error>('/api/data', getAll);
+  const { 
+    data: apiData, 
+    error, 
+    isLoading 
+  } = useSWR<CountryInfo[], Error>('/api/data', getAll);
 
   // Filter Data
   const filteredData = Array.isArray(data) 
@@ -46,6 +49,7 @@ const AppLayout: React.FC = () => {
     if (apiData) {
       setData(apiData);
     }
+    console.log(apiData);
   }, [apiData, setData]);
 
   return (
@@ -80,7 +84,7 @@ const AppLayout: React.FC = () => {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <Card
-                    link={`/${country.name.common}`}
+                    link={`/${country.cca2}`}
                     flag={country.flags.png}
                     country={country.name.common}
                     population={country.population.toString()}

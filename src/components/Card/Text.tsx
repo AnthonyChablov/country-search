@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 interface IText{
     category : string,
     animationValue : number,
-    value : string
+    value : string | string[]
 }
 
 const Text = ({category,animationValue, value }:IText) => {

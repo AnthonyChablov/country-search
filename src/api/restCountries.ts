@@ -1,16 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-
-interface CountryData {
-    // Define the properties of the country data here
-    name: string;
-    population: number;
-    // ...
-}
+import { CountryInfo } from "../models/country";
 
 /* Api Calls */
 export async function getAll(){
     try{
-        const res: AxiosResponse<CountryData[]> = await axios.get(
+        const res: AxiosResponse<CountryInfo[]> = await axios.get(
             'https://restcountries.com/v3.1/all', 
         );
         return res.data;
@@ -20,10 +14,10 @@ export async function getAll(){
     }
 }
 
-export async function getOne(name:string){
+export async function getOne(code:string){
     try{
-        const res: AxiosResponse<CountryData[]> = await axios.get(
-            `https://restcountries.com/v3.1/name/${name}?fullText=true`, 
+        const res: AxiosResponse<CountryInfo[]> = await axios.get(
+            `https://restcountries.com/v3.1/alpha/${code}`, 
         );
         return res.data;
     }catch(err){
