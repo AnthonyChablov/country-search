@@ -60,7 +60,7 @@ const SingleLayout: React.FC = () => {
                         initial="hidden"
                         animate="visible"
                     >
-                        <div className="mt-10 mb-5">
+                        <div className="mt-10 lg:mt-0 mb-5">
                         <Header title={data[0]?.name?.common} />
                         </div>
                         <div className="lg:flex">
@@ -72,14 +72,14 @@ const SingleLayout: React.FC = () => {
                         </div>
                         <div className="lg:w-1/2">
                             {data && (
-                                <div className="mt-10 space-y-3">
+                                <div className="mt-10 lg:mt-0 space-y-3">
                                     <CountryData data={data[0]} startSlice={5} endSlice={data[0]?.length} />
                                 </div>
                             )}
                         </div>
                         </div>
                         {/* Border Countries */}
-                        <div className="mt-5">
+                        <div className="mt-5 ">
                         <SubHeader title="Border Countries" />
                         {borderCountries && borderCountries.length > 0 ? (
                             <ul className="grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
