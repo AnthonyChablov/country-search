@@ -5,6 +5,7 @@ type State = {
     filter: string,
     search: string,
     data : any,
+    selected: number, 
 }
 
 type Action = {
@@ -12,6 +13,7 @@ type Action = {
     setFilter:(newFilter: string) => void,
     setSearch : (newSearch: string) => void,
     setData:(newData: string) => void,
+    setSelected : (newSelected: number) => void,
 }
 
 export const useDataStore = create<State & Action>((set)=>({
@@ -19,9 +21,11 @@ export const useDataStore = create<State & Action>((set)=>({
     filter: '',
     data : null,
     search: '',
+    selected : 0,
     setSearch:(newSearch : string) => set({ search : newSearch }),
     setDisplay: (newDisplay : boolean) => set({ display : newDisplay }),
     setFilter:(newFilter: string) => set({ filter : newFilter }),
+    setSelected:(newSelected: number) => set({ selected : newSelected }),
     
     setData:(newData: any) => set({ data : newData })
 }));

@@ -2,6 +2,7 @@ import create from 'zustand';
 
 type State = {
     theme: string,
+    
 }
 
 type Action = {

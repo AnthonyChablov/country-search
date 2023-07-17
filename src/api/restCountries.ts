@@ -20,3 +20,14 @@ export async function getAll(){
     }
 }
 
+export async function getOne(name:string){
+    try{
+        const res: AxiosResponse<CountryData[]> = await axios.get(
+            `https://restcountries.com/v3.1/name/${name}?fullText=true`, 
+        );
+        return res.data;
+    }catch(err){
+        console.log(err);
+        throw err;
+    }
+}
