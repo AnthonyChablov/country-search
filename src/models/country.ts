@@ -7,6 +7,7 @@ export interface CountryInfo {
         official: string;
         common: string;
       };
+      
     };
   };
   tld: string[];

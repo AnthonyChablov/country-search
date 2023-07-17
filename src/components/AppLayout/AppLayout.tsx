@@ -84,7 +84,7 @@ const AppLayout: React.FC = () => {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <Card
-                    link={`/${country.cca2}`}
+                    link={`/${country.cca3}`}
                     flag={country.flags.png}
                     country={country.name.common}
                     population={country.population.toString()}

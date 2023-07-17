@@ -1,4 +1,3 @@
-import React from 'react'
 
 interface IAttribute {
     title: string,
@@ -8,8 +7,8 @@ interface IAttribute {
 const Attribute = ({title, description}:IAttribute) => {
   return (
     <div className='flex'>
-        <p>{title}</p>
-        <p>{description}</p>
+        <p className="font-semibold text-md">{`${title}:`}</p>
+        <p className="ml-2 font-normal  text-md">{description}</p>
     </div>
   )
 }
