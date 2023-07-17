@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import { motion, Variants } from 'framer-motion';
 import { CountryInfo } from '../../models/country';
 import { getOne } from '../../api/restCountries';
 import { useParams } from 'react-router-dom';
@@ -10,16 +11,17 @@ import FlagImage from '../Image/FlagImage';
 import Header from './Header';
 import SubHeader from './SubHeader';
 import CountryData from './CountryData';
+import { singleLayoutVariant } from '../../variants/variant';
 
 const SingleLayout: React.FC = () => {
   const { country: code } = useParams<{ country: string }>();
 
-  const { data, error, isValidating } = useSWR<CountryInfo[], Error>(
+  const { data, error, isValidating } = useSWR<CountryInfo[] | undefined, Error>(
     `/api/singleData/${code ?? ''}`,
     () => getOne(code ?? ''),
     { revalidateOnFocus: false }
   );
-  
+
   const [borderCountries, setBorderCountries] = useState<string[]>([]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const SingleLayout: React.FC = () => {
       <Nav />
       <div className="min-h-screen max-h-full dark:bg-slate-800 bg-gray-100 dark:text-white">
         <Container>
-          <LinkButton link="/" title="Back" displayIcon={true}/>
+          <LinkButton link="/" title="Back" displayIcon={true} />
           <div className="">
             <div className="mt-10">
               {error && <p>Error: Failed to fetch country data.</p>}
@@ -43,34 +45,55 @@ const SingleLayout: React.FC = () => {
                   <p>Loading...</p>
                 </div>
               ) : (
-                <div className='lg:flex'>
-                  <FlagImage src={data[0]?.flags?.png} alt={data[0]?.flags?.alt} />
-                  <div className="">
-                    <div className="mt-10 mb-5">
+                <div className="lg:flex">
+                    <motion.div 
+                        className="lg:w-1/2"
+                        variants={singleLayoutVariant}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <FlagImage src={data[0]?.flags?.png} alt={data[0]?.flags?.alt} />
+                    </motion.div>
+                    <motion.div 
+                        className="lg:w-1/2"
+                        variants={singleLayoutVariant}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <div className="mt-10 mb-5">
                         <Header title={data[0]?.name?.common} />
-                    </div>
-                    <div className="lg:flex">
-                        
+                        </div>
+                        <div className="lg:flex">
                         {/* Data */}
-                        <div className="space-y-3">
+                        <div className="lg:w-1/2">
+                            <div className="space-y-3">
                             <CountryData data={data[0]} startSlice={0} endSlice={5}/>
+                            </div>
                         </div>
-                        <div className="mt-10 space-y-3">
-                            <CountryData data={data[0]} startSlice={5} endSlice={data[0].length}/>
+                        <div className="lg:w-1/2">
+                            {data && (
+                                <div className="mt-10 space-y-3">
+                                    <CountryData data={data[0]} startSlice={5} endSlice={data[0]?.length} />
+                                </div>
+                            )}
                         </div>
-                    </div>
-                    {/* Border Countries */}
-                    <div className="mt-5">
+                        </div>
+                        {/* Border Countries */}
+                        <div className="mt-5">
                         <SubHeader title="Border Countries" />
-                        <ul className=" grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-                        {borderCountries.map((country, i) => (
-                            <li key={i}>
-                            <LinkButton link={`/${country}`} title={country} displayIcon={false} />
-                            </li>
-                        ))}
-                        </ul>
-                    </div>
-                  </div>
+                        {borderCountries && borderCountries.length > 0 ? (
+                            <ul className="grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
+                              {borderCountries.map((country, i) => (
+                                <li key={i}>
+                                  <LinkButton link={`/${country}`} title={country} displayIcon={false} />
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p>No border countries found.</p>
+                          )}
+                        </div>
+                    </motion.div>
                 </div>
               )}
             </div>

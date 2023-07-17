@@ -1,6 +1,33 @@
 import { Variants } from "framer-motion";
+
 export const cardVariant: Variants = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
+    hidden: {
+      opacity: 0,
+      y: 20,
+      visibility: "hidden",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      visibility: "visible",
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+export const singleLayoutVariant: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
 };
