@@ -2,8 +2,13 @@ import React,{useEffect} from 'react';
 import { CountryInfo } from '../../models/country';
 import Attribute from './Attribute';
 
+interface ICountryData{
+    data: CountryInfo,
+    startSlice: number,
+    endSlice : number
+}
 
-const CountryData: React.FC<{ data: CountryInfo }> = ({ data }) => {
+const CountryData: React.FC<ICountryData> = ({ data, startSlice , endSlice}:ICountryData) => {
 
   const { name, region, subregion, capital, tld, currencies, languages, population } = data;
 
@@ -69,7 +74,7 @@ const CountryData: React.FC<{ data: CountryInfo }> = ({ data }) => {
 
   return (
     <>
-      {countryData.map((item, index) => (
+      {countryData.slice(startSlice, endSlice).map((item, index) => (
         <Attribute key={index} title={item.title} description={item.data} />
       ))}
     </>

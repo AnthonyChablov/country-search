@@ -1,6 +1,7 @@
 import Icon from "../Icon/Icon";
 import Container from "../Container/Container";
 import { useAppStore } from "../../store/app/appstore";
+import {Link} from 'react-router-dom';
 
 const Nav = () => {
 
@@ -16,7 +17,7 @@ const Nav = () => {
     <div className="bg-white shadow-lg dark:bg-gray-700 dark:text-white"> 
         <Container>
             <div className="flex flex-row justify-between items-center ">
-                <p className="font-semibold text-sm sm:text-lg">Where in the world?</p>
+                <Link to={'/'}><p className="font-semibold text-sm sm:text-lg">Where in the world?</p></Link>
                 <div className=" flex justify-center items-center cursor-pointer"
                   onClick={()=>onClickDarkModeToggle()}
                 >
