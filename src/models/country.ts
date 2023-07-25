@@ -1,4 +1,5 @@
 export interface CountryInfo {
+  length: number;
   name: {
     common: string;
     official: string;

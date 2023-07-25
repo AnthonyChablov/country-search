@@ -80,7 +80,7 @@ const SingleLayout: React.FC = () => {
                                       <CountryData 
                                         data={data[0]} 
                                         startSlice={5} 
-                                        endSlice={data[0]?.length} 
+                                        endSlice={data[0].length } 
                                       />
                                   </div>
                                 )
