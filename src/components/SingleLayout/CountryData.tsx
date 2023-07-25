@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { CountryInfo } from '../../models/country';
 import Attribute from './Attribute';
 
@@ -12,26 +12,10 @@ const CountryData: React.FC<ICountryData> = ({ data, startSlice , endSlice}:ICou
 
   const { name, region, subregion, capital, tld, currencies, languages, population } = data;
 
-  const extractedLanguages: string[] = [];
-  for (const key in languages) {
-    if (languages.hasOwnProperty(key)) {
-      extractedLanguages.push(languages[key]);
-    }
-  }
+  const extractedLanguages: string[] = Object.values(languages);
+  const extractedCurrencies: string[] = Object.values(currencies).map((currency) => currency.name);
+  const extractedNativeName: string[] = Object.values(name.nativeName).map((nativeName) => nativeName.official);
 
-  const extractedCurrencies: string[] = [];
-  for (const key in currencies) {
-    if (currencies.hasOwnProperty(key)) {
-      extractedCurrencies.push(currencies[key].name);
-    }
-  }
-
-  const extractedNativeName: string[] = [];
-  for (const key in name.nativeName) {
-    if (name.nativeName.hasOwnProperty(key)) {
-      extractedNativeName.push(name.nativeName[key].official);
-    }
-  }
 
   const countryData = [
     {

@@ -76,7 +76,7 @@ const SingleLayout: React.FC = () => {
                           <div className="md:w-1/2">
                               {
                                 data && (
-                                  <div className="mt-10 lg:mt-0 space-y-3 space-y-1">
+                                  <div className="mt-10 lg:mt-0 space-y-3 md:space-y-1">
                                       <CountryData 
                                         data={data[0]} 
                                         startSlice={5} 
