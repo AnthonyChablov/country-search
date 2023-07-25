@@ -35,12 +35,12 @@ Users should be able to:
 
 ### Screenshot
 
-![Country Search Application Screenshot](./screenshot.png)
+![Country Search Application Screenshot](./src/assets/screenshot/Screen%20Shot%202023-07-25%20at%2019.50.54.png)
 
 ### Links
 
-- Solution URL: [Add your solution URL here](https://www.example.com)
-- Live Site URL: [Add your live site URL here](https://www.example.com)
+- Solution URL: [Add your solution URL here](https://country-search-q7hl-anthonychablov.vercel.app/)
+- Live Site URL: [Add your live site URL here](https://country-search-q7hl-anthonychablov.vercel.app/)
 
 ## Features
 
@@ -62,8 +62,8 @@ Users should be able to:
 
 ### Prerequisites
 
-- Node.js (Version X.X.X)
-- npm (Version X.X.X)
+- Node.js (Version v16.13.0)
+- npm (Version 9.7.1)
 
 ### Installation
 
@@ -86,6 +86,6 @@ The project is licensed under the [MIT License](https://opensource.org/licenses/
 
 ## Contact
 
-- GitHub: [Your GitHub username](https://github.com/your-username)
-- Email: [Your Email Address]
-- LinkedIn: [Your LinkedIn Profile URL]
+- GitHub: [Your GitHub username](https://github.com/AnthonyChablov/)
+- Email: aechablov@gmail.com
+- LinkedIn: [Your LinkedIn](https://www.linkedin.com/in/anthonychablov/)
