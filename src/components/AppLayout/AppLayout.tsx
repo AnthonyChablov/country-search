@@ -52,10 +52,14 @@ const AppLayout: React.FC = () => {
     console.log(apiData);
   }, [apiData, setData]);
 
+  useEffect(() => {
+    setCurrentPage(1); // Reset currentPage to 1 when search or filter changes
+  }, [search, filter]);
+
   return (
     <>
       <Nav/>
-      <div className="h-fit dark:bg-slate-800 bg-gray-100 dark:text-white">
+      <div className="min-h-screen max-h-full dark:bg-slate-800 bg-gray-100 dark:text-white">
         <Container>
           <div className="md:flex md:justify-between md:gap-8 mb-12">
             <div className="md:w-5/12">
@@ -106,6 +110,7 @@ const AppLayout: React.FC = () => {
     </>
   );
 };
+
 
 const filterData = (data: CountryInfo[], search: string, filter: string): CountryInfo[] => {
   return data?.filter(

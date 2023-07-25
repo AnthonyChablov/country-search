@@ -36,7 +36,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
     <motion.div variants={cardVariants} initial="hidden" animate="visible" className="w-full">
       <Link to={link}>
         <motion.div
-          className="bg-white shadow-md dark:bg-gray-700 rounded-md overflow-hidden"
+          className="bg-gray-100 shadow-md dark:bg-gray-700 rounded-md overflow-hidden"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -54,7 +54,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
             </div>
           </div>
           {/* description */}
-          <div className="px-8 pt-4 pb-6 md:pb-10">
+          <div className="px-8 pt-4 pb-6 md:pb-10 ">
             <motion.h1
               className="text-lg font-semibold mb-3 truncate"
               initial={{ opacity: 0, y: 10 }}
