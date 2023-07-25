@@ -24,7 +24,7 @@ const Filter = () => {
   return (
     <div>
       <select
-        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit 
+        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit max-w-xs
           shadow-sm rounded-md bg-white dark:bg-gray-700 dark:text-gray-400 cursor-pointer text-gray-400"
         name="continents"
         placeholder="Select"
