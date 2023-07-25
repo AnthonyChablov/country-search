@@ -50,10 +50,10 @@ const SingleLayout: React.FC = () => {
                   <p>Loading...</p>
                 </div>
               ) : (
-                <div className="lg:flex ">
+                <div className="lg:flex mt-4">
                   {/* Flag */}
                     <motion.div 
-                        className="flex items-center justify-center lg:w-6/12 lg:justify-start "
+                        className="flex items-center justify-center lg:w-6/12 lg:justify-start lg:items-start"
                         variants={singleLayoutVariant}
                         initial="hidden"
                         animate="visible"
@@ -62,7 +62,7 @@ const SingleLayout: React.FC = () => {
                     </motion.div>
                     {/* Info */}
                     <motion.div 
-                        className="lg:w-1/2"
+                        className="lg:w-1/2 flex flex-col items-center lg:flex-none lg:items-baseline"
                         variants={singleLayoutVariant}
                         initial="hidden"
                         animate="visible"
@@ -70,27 +70,29 @@ const SingleLayout: React.FC = () => {
                         <div className="mt-10 lg:mt-2 mb-5">
                           <Header title={data[0]?.name?.common} />
                         </div>
-                        <div className="lg:flex">
+                        <div className="md:flex">
                         {/* Data */}
-                        <div className="lg:w-1/2">
+                        <div className="md:w-1/2 mr-9 ">
                             <div className="space-y-1">
                               <CountryData data={data[0]} startSlice={0} endSlice={5}/>
                             </div>
                         </div>
-                        <div className="lg:w-1/2">
-                            {data && (
+                        <div className="md:w-1/2">
+                            {
+                              data && (
                                 <div className="mt-10 lg:mt-0 space-y-1">
                                     <CountryData data={data[0]} startSlice={5} endSlice={data[0]?.length} />
                                 </div>
-                            )}
+                              )
+                            }
                         </div>
                         </div>
                         {/* Border Countries */}
                         <div className="mt-5 ">
                         <SubHeader title="Border Countries" />
                         {borderCountries && borderCountries.length > 0 ? (
-                            <ul className="grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-                              {borderCountries.map((country, i) => (
+                            <ul className="mt-10 grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                              {borderCountries?.map((country, i) => (
                                 <li key={i}>
                                   <LinkButton 
                                     link={`/${country}`} 

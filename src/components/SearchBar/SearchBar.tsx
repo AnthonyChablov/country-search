@@ -11,7 +11,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="w-full bg-white px-3 py-4 rounded-lg flex items-center dark:bg-gray-700 shadow-sm">
+    <div className="w-full bg-white px-3 py-4 rounded-lg flex items-center dark:bg-gray-700 shadow-sm text-gray-600">
         <div className="mx-2 ml-4">
           <Icon type={`search`} size={18} color="gray"/>
         </div>

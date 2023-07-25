@@ -79,6 +79,7 @@ const AppLayout: React.FC = () => {
             ) : (
               currentCountries?.map((country, i: number) => (
                 <motion.div
+                  className='mx-auto'
                   onClick={()=>{
                     setSelected(i);
                   }}

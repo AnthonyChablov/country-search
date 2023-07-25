@@ -36,7 +36,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
     <motion.div variants={cardVariants} initial="hidden" animate="visible" className="w-full">
       <Link to={link}>
         <motion.div
-          className="bg-gray-100 shadow-md dark:bg-gray-700 rounded-md overflow-hidden"
+          className="bg-gray-100 shadow-md dark:bg-gray-700 rounded-md overflow-hidden min-w-[10rem] max-w-[20rem]"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -44,7 +44,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
           <div className="h-[7.6rem] bg-slate-500 overflow-hidden flex items-center justify-center">
             <div className="aspect-w-16 aspect-h-10 h-94">
               <motion.img
-                className="object-contain w-50  "
+                className="object-contain w-50"
                 src={flag}
                 alt="country flag"
                 initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
             </div>
           </div>
           {/* description */}
-          <div className="px-8 pt-4 pb-6 md:pb-10 ">
+          <div className="px-8 pt-4 pb-6 md:pb-10">
             <motion.h1
               className="text-lg font-semibold mb-3 truncate"
               initial={{ opacity: 0, y: 10 }}

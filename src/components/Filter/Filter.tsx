@@ -1,6 +1,5 @@
-import Icon from "../Icon/Icon";
+import { ChangeEvent } from 'react';
 import { useDataStore } from "../../store/app/data/dataStore";
-import { useEffect } from "react";
 
 
 const continents = [
@@ -12,22 +11,25 @@ const continents = [
 ]
 
 const Filter = () => {
-  const data = useDataStore(state => state.data);
+
   const filter = useDataStore(state => state.filter);
   const setFilter = useDataStore(state => state.setFilter);
-
-  useEffect(()=>{
-    console.log(filter)
-  },[filter]);
+  const setSearch = useDataStore(state => state.setSearch);
+  
+  function onChangeHandler(e: ChangeEvent<HTMLInputElement| HTMLSelectElement>) {
+    setSearch(''); // Reset the search state to an empty string
+    setFilter(e.target.value); // Update the filter state with the new value
+  }
 
   return (
     <div>
       <select
-        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit shadow-sm rounded-md bg-white dark:bg-gray-700 cursor-pointer"
+        className="px-4 py-3 md:px-7 md:py-4 w-full flex md:w-fit 
+          shadow-sm rounded-md bg-white dark:bg-gray-700 dark:text-gray-400 cursor-pointer text-gray-400"
         name="continents"
         placeholder="Select"
         value={filter}
-        onChange={(e) => setFilter(e.target.value)}
+        onChange={(e)=>onChangeHandler(e)}
       >
         <option value="" disabled hidden>
           Filter By Region
