@@ -10,11 +10,13 @@ interface ILinkButton{
 const LinkButton = ({link,title,displayIcon}:ILinkButton) => {
   return (
     <Link to={link}>
-        <div className="inline-block">
+        <div className="inline-block ">
             {/* Icon */}
-            <div className="flex items-center justify-center px-6 py-1.5 shadow-lg bg-slate-600 w-24">
-                {displayIcon && <Icon type={'back'} size={18} color="white"/>}
-                <p className={`font-light ${displayIcon ? 'ml-3' : ''}`}>{title}</p>
+            <div className={`flex items-center justify-center  py-1.5 shadow-xl bg-slate-50 dark:bg-slate-600 w-24 rounded-md
+              ${displayIcon ? 'px-16' : 'px-6'}
+            `}>
+                {displayIcon && <Icon type={'back'} size={18} />}
+                <p className={`font-light ${displayIcon ? 'ml-3  ' : 'text-sm'}`}>{title}</p>
             </div>
         </div>
     </Link>

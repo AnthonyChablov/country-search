@@ -9,7 +9,7 @@ const FlagImage = ({ src, alt,  }:IFlagImage) => {
     <img
       src={src}
       alt={alt}
-      className={`w-full h-auto max-w-md`}
+      className={`w-full h-auto max-w-md shadow-2xl`}
     />
   );
 };

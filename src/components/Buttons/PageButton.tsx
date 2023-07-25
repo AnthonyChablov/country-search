@@ -11,7 +11,7 @@ const PageButton = ({pageNumber, currentPage, paginate}:IPageButton) => {
         key={pageNumber}
         className={`mx-1 px-3 py-2 rounded-md ${
             currentPage === pageNumber + 1 
-                ? 'dark:bg-gray-700 text-white' 
+                ? 'dark:bg-gray-700 bg-gray-500 text-white' 
                 : 'bg-white text-gray-700'
         }`}
         onClick={() => paginate(pageNumber + 1)}

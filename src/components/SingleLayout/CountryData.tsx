@@ -68,10 +68,6 @@ const CountryData: React.FC<ICountryData> = ({ data, startSlice , endSlice}:ICou
     }
   ];
 
-  useEffect(()=>{
-    console.log(data)
-  },[data])
-
   return (
     <>
       {countryData.slice(startSlice, endSlice).map((item, index) => (

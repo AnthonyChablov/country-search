@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { CountryInfo } from '../../models/country';
 import { getOne } from '../../api/restCountries';
 import { useParams } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Header from './Header';
 import SubHeader from './SubHeader';
 import CountryData from './CountryData';
 import { singleLayoutVariant } from '../../variants/variant';
+import { getCountryNameByCode } from '../../utils/getCountryNameByCode';
 
 const SingleLayout: React.FC = () => {
   const { country: code } = useParams<{ country: string }>();
@@ -31,6 +32,10 @@ const SingleLayout: React.FC = () => {
     }
   }, [data, code]);
 
+  useEffect(()=>{
+    console.log(data);
+  }, [data]);
+
   return (
     <>
       <Nav />
@@ -45,34 +50,36 @@ const SingleLayout: React.FC = () => {
                   <p>Loading...</p>
                 </div>
               ) : (
-                <div className="lg:flex">
+                <div className="lg:flex ">
+                  {/* Flag */}
                     <motion.div 
-                        className="lg:w-1/2"
+                        className="flex items-center justify-center lg:w-6/12 lg:justify-start "
                         variants={singleLayoutVariant}
                         initial="hidden"
                         animate="visible"
                     >
                         <FlagImage src={data[0]?.flags?.png} alt={data[0]?.flags?.alt} />
                     </motion.div>
+                    {/* Info */}
                     <motion.div 
                         className="lg:w-1/2"
                         variants={singleLayoutVariant}
                         initial="hidden"
                         animate="visible"
                     >
-                        <div className="mt-10 lg:mt-0 mb-5">
-                        <Header title={data[0]?.name?.common} />
+                        <div className="mt-10 lg:mt-2 mb-5">
+                          <Header title={data[0]?.name?.common} />
                         </div>
                         <div className="lg:flex">
                         {/* Data */}
                         <div className="lg:w-1/2">
-                            <div className="space-y-3">
-                            <CountryData data={data[0]} startSlice={0} endSlice={5}/>
+                            <div className="space-y-1">
+                              <CountryData data={data[0]} startSlice={0} endSlice={5}/>
                             </div>
                         </div>
                         <div className="lg:w-1/2">
                             {data && (
-                                <div className="mt-10 lg:mt-0 space-y-3">
+                                <div className="mt-10 lg:mt-0 space-y-1">
                                     <CountryData data={data[0]} startSlice={5} endSlice={data[0]?.length} />
                                 </div>
                             )}
@@ -85,12 +92,16 @@ const SingleLayout: React.FC = () => {
                             <ul className="grid grid-cols-2 xxs:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
                               {borderCountries.map((country, i) => (
                                 <li key={i}>
-                                  <LinkButton link={`/${country}`} title={country} displayIcon={false} />
+                                  <LinkButton 
+                                    link={`/${country}`} 
+                                    title={getCountryNameByCode(country)} 
+                                    displayIcon={false} 
+                                  />
                                 </li>
                               ))}
                             </ul>
                           ) : (
-                            <p>No border countries found.</p>
+                            <p className='text-sm'>No border countries found.</p>
                           )}
                         </div>
                     </motion.div>
