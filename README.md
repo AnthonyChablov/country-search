@@ -2,7 +2,7 @@
 
 This is a solution for the Country Search challenge from Frontend Mentor.
 
-![Link to the challenge here](./design/desktop-preview.jpg)
+![Link to the challenge here](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca)
 
 ## Table of Contents
 
