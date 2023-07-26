@@ -1,8 +1,8 @@
 # Country Search
 
-This is a solution for the Country Search challenge from Frontend Mentor (Link to the challenge here).
+This is a solution for the Country Search challenge from Frontend Mentor.
 
-![Design preview for the Country Search coding challenge](./design/desktop-preview.jpg)
+![Link to the challenge here](./design/desktop-preview.jpg)
 
 ## Table of Contents
 
