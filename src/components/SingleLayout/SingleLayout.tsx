@@ -63,20 +63,20 @@ const SingleLayout: React.FC = () => {
                       initial="hidden"
                       animate="visible"
                     >
-                        <div className="mt-10 lg:mt-2 mb-5">
+                        <div className="mt-10 lg:mt-2 mb-5 ss:text-center lg:text-left">
                           <Header title={data[0]?.name?.common} />
                         </div>
-                        <div className="md:flex">
+                        <div className="ss:flex ss:justify-between ss:max-w-lg lg:max-w-none mx-auto">
                           {/* Data */}
                           <div className="md:w-1/2 mr-9 ">
-                              <div className="space-y-3 md:space-y-1">
-                                <CountryData data={data[0]} startSlice={0} endSlice={5}/>
-                              </div>
+                            <div className="space-y-3 md:space-y-3">
+                              <CountryData data={data[0]} startSlice={0} endSlice={5}/>
+                            </div>
                           </div>
-                          <div className="md:w-1/2">
+                          <div className="lg:w-1/2">
                               {
                                 data && (
-                                  <div className="mt-10 lg:mt-0 space-y-3 md:space-y-1">
+                                  <div className="mt-10 lg:mt-0 space-y-3 ss:mt-0 md:space-y-3">
                                       <CountryData 
                                         data={data[0]} 
                                         startSlice={5} 
@@ -89,11 +89,13 @@ const SingleLayout: React.FC = () => {
                         </div>
                         {/* Border Countries */}
                         <div className="">
-                        <SubHeader title="Border Countries" />
+                        <SubHeader title="Border Countries"/>
                         {borderCountries && borderCountries.length > 0 ? (
-                            <ul className=" grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+                            <ul className=" grid grid-cols-1 xs:grid-cols-2 ss:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-lg  
+                              lg:max-w-none mx-auto "
+                            >
                               {borderCountries?.map((country, i) => (
-                                <li key={i}>
+                                <li key={i} className='text-left  ss:text-center lg:text-left'>
                                   <LinkButton 
                                     link={`/${country}`} 
                                     title={getCountryNameByCode(country)} 

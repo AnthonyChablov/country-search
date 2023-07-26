@@ -5,7 +5,7 @@ interface ITitle {
 
 const Header = ({title}:ITitle) => {
   return (
-    <div className='font-bold text-2xl'>
+    <div className='font-bold text-3xl '>
         {title}
     </div>
   )
