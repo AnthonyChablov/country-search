@@ -36,7 +36,7 @@ const Card = ({ flag, link, country, population, region, capital }: ICard) => {
     <motion.div variants={cardVariants} initial="hidden" animate="visible" className="w-full">
       <Link to={link}>
         <motion.div
-          className="bg-gray-100 shadow-md dark:bg-gray-700 rounded-md overflow-hidden min-w-[10rem] max-w-[20rem]"
+          className="bg-gray-100 shadow-md dark:bg-gray-700 rounded-md overflow-hidden min-w-[10rem] max-w-[17rem]"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

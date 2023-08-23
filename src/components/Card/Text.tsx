@@ -14,7 +14,7 @@ const Text = ({category,animationValue, value }:IText) => {
       transition={{ duration: 0.5, delay: (animationValue + 1) * 0.1 }}
     >
         <p className="mr-2">{category}</p> 
-        <p className="text-slate-500 dark:text-slate-300">{value}</p>
+        <p className="text-slate-500 dark:text-slate-300 truncate">{value}</p>
     </motion.span>
   )
 }
