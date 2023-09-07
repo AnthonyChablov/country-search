@@ -18,14 +18,17 @@ const Pagination: React.FC<PaginationProps> = ({
     <>
       {filteredData && (
         <div className="flex justify-center mt-10">
-          {Array.from(Array(Math.ceil(filteredData.length / countriesPerPage)).keys()).map((pageNumber) => (
-            <PageButton
-              key={pageNumber}
-              currentPage={currentPage}
-              pageNumber={pageNumber}
-              paginate={paginate}
-            />
-          ))}
+          <div className="flex flex-wrap justify-center items-center">
+            {Array.from(Array(Math.ceil(filteredData.length / countriesPerPage)).keys()).map((pageNumber) => (
+              <PageButton
+                key={pageNumber}
+                currentPage={currentPage}
+                pageNumber={pageNumber}
+                paginate={paginate}
+                
+              />
+            ))}
+          </div>
         </div>
       )}
     </>

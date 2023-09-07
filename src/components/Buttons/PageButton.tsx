@@ -9,7 +9,7 @@ const PageButton = ({pageNumber, currentPage, paginate}:IPageButton) => {
   return (
     <button
         key={pageNumber}
-        className={`mx-1 px-3 py-2 rounded-md ${
+        className={`mx-1 px-3 py-2 rounded-md mb-5 ml-3 ${
             currentPage === pageNumber + 1 
                 ? 'dark:bg-gray-700 bg-gray-500 text-white' 
                 : 'bg-white text-gray-700'

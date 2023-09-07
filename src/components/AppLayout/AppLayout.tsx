@@ -112,7 +112,6 @@ const AppLayout: React.FC = () => {
   );
 };
 
-
 const filterData = (data: CountryInfo[], search: string, filter: string): CountryInfo[] => {
   return data?.filter(
     (country) =>
